@@ -1,37 +1,15 @@
 <% include partials/header %>
 <header>
-<div class="navBar">
-<img src="2.png" class="logo">
-        <h2 class="navHeader"> Bruno's Blog</h2>
-<nav>
-    <ul>
-       <li> 
-            <form action="/" method="GET">
-                <button> Back home </button>
-            </form>
-        </li> 
-       <li> 
-            <form action="/survey" method="GET">
-                <button> survey </button>
-            </form>
-        </li> 
-       <li> 
-            <form action="/Brunosfriends" method="GET">
-                <button> Bruno's friends </button>
-            </form> </li> 
-       <li> 
-            <form action="/toDo" method="GET">
-                <button> ToDo </button>
-            </form> </li>       
-        </li>
-    </ul>
-</nav>
-</div>
+
 </header>	
 <h1> Todo Pending </h1>
 
-<form action="/" method="GET">
-<button> Back home </button>
-</form>
+<% list.forEach(function(list){ %>
+<li> New toDo: <%= list %> </li>
+<% }); %>
 
+<form action="addToDo" method="POST">
+    <input type="text" name="newToDo" placeholde="name">
+    <button> New ToDo </button>
+</form>
 <% include partials/footer %>

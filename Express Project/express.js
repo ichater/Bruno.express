@@ -1,6 +1,8 @@
 let express = require("express");
 let app = express();
+let bodyParser = require("body-parser")
 
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 
@@ -9,15 +11,24 @@ app.get("/", function(req, res){
 });
 
 app.get("/Brunosfriends", function(req, res){
-	res.render("brunosFriends.ejs")
+	res.render("brunosFriends.ejs");
 });
 
 app.get("/survey", function(req, res){
-	res.render("brunosSurvey.ejs")
+	res.render("brunosSurvey.ejs");
 });
 
+let list = ["hug mum", "eat food"];
+
 app.get("/toDo", function(req, res){
-	res.render("ToDo.ejs")
+	let list = ["hug mum", "eat food", "bork twice"];
+	res.render("ToDo.ejs", {list: list});
+});
+
+app.post("/addToDo", function(req, res){
+	let newToDo = req.body.newToDo;
+	newToDo.push(newToDo);
+	res.redirect("/toDo");
 });
 
 
