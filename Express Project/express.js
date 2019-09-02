@@ -21,15 +21,18 @@ app.get("/survey", function(req, res){
 let list = ["hug mum", "eat food"];
 
 app.get("/toDo", function(req, res){
-	let list = ["hug mum", "eat food", "bork twice"];
+	
 	res.render("ToDo.ejs", {list: list});
 });
 
 app.post("/addToDo", function(req, res){
 	let newToDo = req.body.newToDo;
-	newToDo.push(newToDo);
+	list.push(newToDo);
 	res.redirect("/toDo");
+	console.log(req.body.newToDo);
 });
+
+let izaakvar = 4+4;
 
 
 app.listen(3000, function(){

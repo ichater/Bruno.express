@@ -1,15 +1,18 @@
 <% include partials/header %>
+
 <header>
 
 </header>	
+<% let izaakvar = 4+4; %>
 <h1> Todo Pending </h1>
 
 <% list.forEach(function(list){ %>
-<li> New toDo: <%= list %> </li>
+<li> <span> x </span> <%= list %> </li>
 <% }); %>
 
 <form action="addToDo" method="POST">
     <input type="text" name="newToDo" placeholde="name">
     <button> New ToDo </button>
 </form>
+
 <% include partials/footer %>
