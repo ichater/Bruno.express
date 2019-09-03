@@ -3,16 +3,20 @@
 <header>
 
 </header>	
-<% let izaakvar = 4+4; %>
-<h1> Todo Pending </h1>
+<h1> Bruno's list </h1>
 
 <% list.forEach(function(list){ %>
-<li> <span> x </span> <%= list %> </li>
+<div> 
+<form action="removeToDo" method="POST">
+ <button><%= list %></button>
+ </form> 
+</div>
 <% }); %>
 
 <form action="addToDo" method="POST">
     <input type="text" name="newToDo" placeholde="name">
     <button> New ToDo </button>
 </form>
+
 
 <% include partials/footer %>
