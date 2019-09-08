@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 
+
 app.get("/", function(req, res){
 	res.render("Bruno1.ejs");
 });
@@ -51,3 +52,4 @@ app.post("/removeToDo", function(req, res){
 app.listen(3000, function(){
 	console.log('listening on port 3000')
 });
+

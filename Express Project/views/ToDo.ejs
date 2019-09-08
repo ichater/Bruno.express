@@ -4,19 +4,37 @@
 
 </header>	
 <h1> Bruno's list </h1>
-
+<p> All deleted toDo's come back because theyre not spliced from array in express.js</p>
 <% list.forEach(function(list){ %>
-<div> 
-<form action="removeToDo" method="POST">
- <button><%= list %></button>
- </form> 
+<div id="list1"> 
+    <li class="list">
+       <span> x </span><%= list %>
+    </li>
 </div>
-<% }); %>
+ </form> 
 
+<% }); %>
 <form action="addToDo" method="POST">
     <input type="text" name="newToDo" placeholde="name">
     <button> New ToDo </button>
 </form>
 
+<div id="jToDo">
+    <h1> Jquery toDo list </h1>
+    <p> This one works but uses 0 logic from express thus defeating purpose of this project </P>
+    <input type="text" class="jInput">
+        <ul id="ul1">
+            <li> <span> X </span> Make ToDos deletable </li>
+            <li> <span> X </span> link jquery file with Express file </li>
+            <li> <span> X </span> get gud at code </li>
+        </ul>    
 
+</div>
+
+
+
+<script type="text/javascript" 
+src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js">
+</script>
+<script type="text/javascript" src="/routes.js"></script>
 <% include partials/footer %>
