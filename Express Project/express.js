@@ -1,15 +1,34 @@
-const express = require("express");
-const app = express();
-const bodyParser = require("body-parser")
-const mysql = require("mysql");
-const path = require("path");
-const routes = require("router");
-const layout= require("express-layout");
+const express = require("express"),
+      app = express(),
+	   bodyParser = require("body-parser"),
+	mysql = require("mysql"),
+ 	  path = require("path"),
+ 	  routes = require("router"),
+ 	  layout= require("express-layout"),
+ 	  mongoose = require("mongoose");
 
-
+mongoose.connect("mongodb://localhost/brunoToDo", { useNewUrlParser: true });
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
+
+//Schema setup
+let brunoSchema = new mongoose.Schema({
+	listItem: String
+});
+
+let brunoList = mongoose.model("brunoList", brunoSchema);
+
+// List.create({
+// 	listItem: "More Bork"
+// }, function(err, list){
+// 	if(err){
+// 		console.log(err);
+// 	} else {
+// 		console.log("new ToDo: ");
+// 		console.log(list);
+// 	}
+// });
 
 
 app.get("/", function(req, res){
@@ -24,29 +43,42 @@ app.get("/survey", function(req, res){
 	res.render("brunosSurvey.ejs");
 });
 
-let list = ["hug mum", "eat food"];
 
 app.get("/toDo", function(req, res){
-	res.render("ToDo.ejs", {list: list});
+	//Get all toDos from db
+	brunoList.find({}, function (err, brunoList){
+		if(err){
+			console.log(err);
+		} else {
+			res.render("ToDo.ejs", {brunoList: brunoList});
+		}
+	});
 });
 
 app.post("/addToDo", function(req, res){
-	let newToDo = req.body.newToDo;
-	list.push(newToDo);
-	res.redirect("/toDo");
+	let listItem = req.body.listItem;
+	let toDo1 = {brunoList: brunoList}
+	//create new ToDo and save to database
+	brunoList.create(toDo1, function(err, newtodo1){
+		if(err){
+			console.log(err);
+		} else {
+			res.redirect("/toDo");
+		}
+	})
 	console.log(req.body.newToDo);
 });
 
-app.post("/removeToDo", function(req, res){
-	let rtoDo = req.body.rtoDo;
-	for(let i = 0; i < list.length; i++){ 
-		if (list[i] === req.body.rtoDo) {
-			list.splice(i, 1); 
-		}
-	 };
-	 res.redirect("/toDo")
-	 console.log("Removed: "  + req.body.removeToDo);
-});
+// app.post("/removeToDo", function(req, res){
+// 	let rtoDo = req.body.rtoDo;
+// 	for(let i = 0; i < brunoList.length; i++){ 
+// 		if (brunoList[i] === req.body.rtoDo) {
+// 			brunoList.splice(i, 1); 
+// 		}
+// 	 };
+// 	 res.redirect("/toDo")
+// 	 console.log("Removed: "  + req.body.removeToDo);
+// });
 
 
 app.listen(3000, function(){
