@@ -1,12 +1,13 @@
-const express = require("express"),
-      app = express(),
-	   bodyParser = require("body-parser"),
-	mysql = require("mysql"),
- 	  path = require("path"),
- 	  routes = require("router"),
- 	  layout= require("express-layout"),
-	   mongoose = require("mongoose"),
-	   methodOveride = require("method-override");
+	const express = require("express"),
+		app = express(),
+		bodyParser = require("body-parser"),
+		mysql = require("mysql"),
+		path = require("path"),
+		routes = require("router"),
+		layout= require("express-layout"),
+		mongoose = require("mongoose"),
+		methodOveride = require("method-override"),
+		touch = require("touch");
 
 mongoose.connect("mongodb://localhost/brunoToDo", { useNewUrlParser: true });
 app.use(bodyParser.urlencoded({extended: true}));
@@ -43,6 +44,18 @@ app.get("/Brunosfriends", function(req, res){
 
 app.get("/survey", function(req, res){
 	res.render("brunosSurvey.ejs");
+});
+
+app.get("/survey/Q1", function(req, res){
+	res.render("Q1.ejs");
+});
+
+app.get("/survey/Q2", function(req, res){
+	res.render("Q2.ejs");
+});
+
+app.get("/survey/Q3", function(req, res){
+	res.render("Q3.ejs");
 });
 
 
