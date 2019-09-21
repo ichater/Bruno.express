@@ -2,34 +2,30 @@
 
 <header>
 
-</header>	
-<h1> Bruno's list </h1>
-<p> All deleted toDo's come back because theyre not spliced from array in express.js</p>
-<% brunoList.forEach(function(brunoList){ %>
-<div id="list1"> 
-    <li class="list">
-       <span> x </span> <%= brunoList.listItem %>
-    </li>
+</header>
+<div id="listBackground">	
+    <div class="listBorder">
+        <h1> Bruno's list </h1>
+            <% brunoList.forEach(function(item){ %>
+                <div id="list1" class="jToDo"> 
+                    <li class="list">
+                        <form class="inline" action="/toDo/<%= item._id %>?_method=DELETE" 
+                            method="POST">
+                            <button id="delete">
+                                x
+                            </button>
+                        </form> 
+                        <span id="listItem"><%= item.listItem %></span>
+                    </li>
+                </div>
+            <% }); %>
+            <form action="addToDo" method="POST">
+                <input type="text" name="newToDo" placeholder="brunoList">
+                <button id="ntd"> New ToDo </button>
+            </form>
+    </div>
 </div>
- </form> 
 
-<% }); %>
-<form action="addToDo" method="POST">
-    <input type="text" name="newToDo" placeholde="name">
-    <button> New ToDo </button>
-</form>
-
-<div id="jToDo">
-    <h1> Jquery toDo list </h1>
-    <p> This one works but uses 0 logic from express thus defeating purpose of this project </P>
-    <input type="text" class="jInput">
-        <ul id="ul1">
-            <li> <span> X </span> Make ToDos deletable </li>
-            <li> <span> X </span> link jquery file with Express file </li>
-            <li> <span> X </span> get gud at code </li>
-        </ul>    
-
-</div>
 
 
 
