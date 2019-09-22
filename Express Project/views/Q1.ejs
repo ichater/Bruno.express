@@ -1,8 +1,17 @@
 <% include partials/header %>
 
-
+<div class="survey">
 <h1> Question 1 </h1>
+<p> Which is objectively better? Cats or dogs? </p>
+
+<input class="incorrect" type="radio" name="animal" value="cats"> Cats<br>
+<input class="correct" type="radio" name="gender" value="dogs"> Dogs<br>
 
 <a href="/survey/Q2"> Next question </a>
+</div>
 
+<script type="text/javascript" 
+src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js">
+</script>
+<script type="text/javascript" src="/routes.js"></script>
 <% include partials/footer %>

@@ -1,8 +1,22 @@
 <% include partials/header %>
 
-
+<div class="survey">
 <h1> Question 2 </h1>
+<p> What are my favourite things to do? </p>
+    <form>
+        <input class="incorrect2" type="radio" name="favourite" value="Food"> Eat Food<br>
+        <input class="incorrect2" type="radio" name="favourite" value="park"> Play in the park <br>
+        <input class="incorrect2" type="radio" name="favourite" value="mum"> Hug mum <br>
+        <input class="incorrect2" type="radio" name="favourite" value="Sleep"> Sleep <br>
+        <input class="correct2"  type="radio" name="favourite" value="All"> All of the above <br>
+    </form>
 
 <a href="/survey/Q3"> Next question </a>
+</div>
+
+<script type="text/javascript" 
+src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js">
+</script>
+<script type="text/javascript" src="/routes.js"></script>
 
 <% include partials/footer %>
