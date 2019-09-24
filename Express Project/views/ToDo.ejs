@@ -1,10 +1,9 @@
 <% include partials/header %>
 
-<header>
 
-</header>
-<div id="listBackground">	
-    <div class="listBorder">
+<div>
+<div class="row">	
+    <div class="listBorder col-sm-4">
         <h1> Bruno's list </h1>
             <% brunoList.forEach(function(item){ %>
                 <div id="list1" class="jToDo"> 
@@ -23,6 +22,7 @@
                 <input type="text" name="newToDo" placeholder="brunoList">
                 <button id="ntd"> New ToDo </button>
             </form>
+            </div>
     </div>
 </div>
 

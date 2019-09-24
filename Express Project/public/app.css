@@ -86,20 +86,51 @@ nav li{
 	font-size: 1em;
 }
 
+#sticky-footer {
+	flex-shrink: none;
+  }
+
 .listBorder {
-	margin: 100px auto;
 	padding: 10px;
 	width: 360px;
 	background: #409bcf;
 	box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+	margin-top: 10%;
+	margin-left: 10%
+
 }
 
 .jumbotron {
 	width: 25%;
 	border: 2px solid black;
+	float: left;
+	height: 100%;
+	
+	padding: 20px;
+  padding-bottom: 50px
 }
+
+#content{
+	margin-left: 27%;
+	margin-top: 30px;
+	padding: 20px;
+  padding-bottom: 50px;
+}
+
+#sticky-footer{
+	margin-left: 25%;
+	width: 100%;
+	height: 50px;
+	margin-top: 100px;
+	position: absolute;
+}
+
 .navbar{
 	width: 75%;
+	overflow: hidden;
+	background-color: #333;
+	position: fixed; /* Set the navbar to fixed position */
+	top: 0; /* Position the navbar at the top of the page */
 }
 
 #thumbnail{
