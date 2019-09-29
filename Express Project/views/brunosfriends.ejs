@@ -1,18 +1,27 @@
 <% include partials/header %>	
 <h1> Friends pending. </h1>
-
+<div class="row">
 <% brunosFriends.forEach(function(friends){ %>
     <div class="card col-md-3" style="width: 18rem;">
     <img src="<%= friends.image %>" class="card-img-top" alt="...">
     <div class="card-body">
         <h5 class="card-title"><%= friends.friendName %></h5>
-        <p class="card-text"><%= friends.description %></p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        
+        
+        <a href="/Brunosfriends/<%= friends._id %>" class="btn btn-primary">
+        More Info
+        </a>
+        
+                        <form class="inline" action="/Brunosfriends/<%= friends._id %>?_method=DELETE" 
+                            method="POST">
+                            <button id="delete">
+                                Delete Freind
+                            </button>
+                        </form> 
     </div>
     </div>
     <%	}); %>
-
-
+    </div>
 
 <p> <a href="/Brunosfriends/new">add a friend</a></p>
 <% include partials/footer %>

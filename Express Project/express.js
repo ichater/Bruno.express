@@ -46,12 +46,13 @@ app.get("/Brunosfriends", function(req, res){
 })
 });
 
+//CREATE new friends
 app.post("/Brunosfriends", function(req, res){
 	let name = req.body.name;
 	let image= req.body.image;
 	let desc = req.body.description;
 	let friend = {name: name, image: image, description: desc};
-
+		//Create new
 	friendList.create(friend, function(err, newF){
 		if(err){
 			console.log(err);
@@ -61,17 +62,38 @@ app.post("/Brunosfriends", function(req, res){
 	});
 });
 
+//SHOW new friends
 app.get("/Brunosfriends/new", function(req, res){
 	res.render("new.ejs");
 });
 
 
-// app.get("/Brunosfriends/:id", function(req,res){
-// 	//find friend with provided ID
-// 	//render friend proper.
-// });
+//VIEW FRIEND
+app.get("/Brunosfriends/:id", function(req,res){
+	//find friend with provided ID
+	friendList.findById(req.params.id, function(err, friend2){
+		if(err){
+			console.log(err)
+		} else {
+			console.log(friend2)
+			res.render("showFriends", {friend: friend2})
+		}
+	});
+	//render friend proper.
+	// req.params.id
+});
 
-
+//DELETE FRIEND
+app.delete("/Brunosfriends/:id", function(req,res){
+	friendList.findByIdAndRemove(req.params.id, function(err){
+		if(err){
+			res.redirect("/Brunosfriends");
+			console.log(err);
+		} else {
+			res.redirect("/Brunosfriends");
+		}
+	});
+});
 
 app.get("/survey", function(req, res){
 	res.render("brunosSurvey.ejs");
