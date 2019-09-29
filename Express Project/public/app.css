@@ -100,6 +100,8 @@ nav li{
 
 }
 
+/* header and footer */
+
 .jumbotron {
 	width: 25%;
 	border: 2px solid black;
@@ -151,6 +153,8 @@ nav li{
 	margin-top: 5px;
 	height: 240px;	
 }
+
+/* add a friend */
 
 #delete {
 	display: inline;

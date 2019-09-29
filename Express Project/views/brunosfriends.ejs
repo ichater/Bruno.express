@@ -1,63 +1,18 @@
 <% include partials/header %>	
 <h1> Friends pending. </h1>
 
-<div class="row">
+<% brunosFriends.forEach(function(friends){ %>
     <div class="card col-md-3" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
+    <img src="<%= friends.image %>" class="card-img-top" alt="...">
     <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <h5 class="card-title"><%= friends.friendName %></h5>
+        <p class="card-text"><%= friends.description %></p>
         <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
     </div>
+    <%	}); %>
 
-    <div class="card col-md-3" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-    </div>
 
-    <div class="card col-md-3" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-    </div>
-    </div>
 
-<div class="row">
-    <div class="card col-md-3" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-    </div>
-
-    <div class="card col-md-3" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-    </div>
-
-    <div class="card col-md-3" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-    </div>
-    </div>
-
-<p> will add a "add a friend" as well as comments section </p>
+<p> <a href="/Brunosfriends/new">add a friend</a></p>
 <% include partials/footer %>

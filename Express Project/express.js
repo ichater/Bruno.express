@@ -7,40 +7,71 @@
 		layout= require("express-layout"),
 		mongoose = require("mongoose"),
 		methodOveride = require("method-override"),
-		touch = require("touch");
+		touch = require("touch"),
+		brunoList = require("./models/toDo"),
+		friendList = require("./models/friends");
 
-mongoose.connect("mongodb://localhost/brunoToDo", { useNewUrlParser: true });
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static("public"));
-app.set("view engine", "ejs");
-app.use(methodOveride("_method"));
+		// mongoose.connect("mongodb://localhost/new_friends", { useNewUrlParser: true });
+		mongoose.connect("mongodb://localhost/brunoToDo", { useNewUrlParser: true });
+		app.use(bodyParser.urlencoded({extended: true}));
+		app.use(express.static("public"));
+		app.set("view engine", "ejs");
+		app.use(methodOveride("_method"));
 
-//Schema setup
-let brunoSchema = new mongoose.Schema({
-	listItem: String
-});
 
-let brunoList = mongoose.model("brunoList", brunoSchema);
-
-// List.create({
-// 	listItem: "More Bork"
-// }, function(err, list){
+// friendList.create({
+// 	friendName: "Steph", 
+// 	image: "https://cdn.newsapi.com.au/image/v1/67a523605bca40778c6faaad93883a3b", 
+// 	description: "DB working again?"
+// }, function(err, friend){
 // 	if(err){
 // 		console.log(err);
 // 	} else {
-// 		console.log("new ToDo: ");
-// 		console.log(list);
+// 		console.log("new friend:")
+// 		console.log(friend);
 // 	}
 // });
-
 
 app.get("/", function(req, res){
 	res.render("Bruno1.ejs");
 });
 
 app.get("/Brunosfriends", function(req, res){
-	res.render("brunosFriends.ejs");
+	friendList.find({}, function (err, friend1){
+		if(err){
+			console.log(err)
+		} else{
+			res.render("brunosfriends.ejs",{brunosFriends:friend1})
+		}
+})
 });
+
+app.post("/Brunosfriends", function(req, res){
+	let name = req.body.name;
+	let image= req.body.image;
+	let desc = req.body.description;
+	let friend = {name: name, image: image, description: desc};
+
+	friendList.create(friend, function(err, newF){
+		if(err){
+			console.log(err);
+		}	else  {
+			res.redirect("/Brunosfriends");
+		}	
+	});
+});
+
+app.get("/Brunosfriends/new", function(req, res){
+	res.render("new.ejs");
+});
+
+
+// app.get("/Brunosfriends/:id", function(req,res){
+// 	//find friend with provided ID
+// 	//render friend proper.
+// });
+
+
 
 app.get("/survey", function(req, res){
 	res.render("brunosSurvey.ejs");
