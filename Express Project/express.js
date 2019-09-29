@@ -11,6 +11,8 @@
 		brunoList = require("./models/toDo"),
 		friendList = require("./models/friends");
 
+
+		
 		// mongoose.connect("mongodb://localhost/new_friends", { useNewUrlParser: true });
 		mongoose.connect("mongodb://localhost/brunoToDo", { useNewUrlParser: true });
 		app.use(bodyParser.urlencoded({extended: true}));
@@ -41,7 +43,7 @@ app.get("/Brunosfriends", function(req, res){
 		if(err){
 			console.log(err)
 		} else{
-			res.render("brunosfriends.ejs",{brunosFriends:friend1})
+			res.render("brunosfriends.ejs",{friend:friend1})
 		}
 })
 });
@@ -74,13 +76,14 @@ app.get("/Brunosfriends/:id", function(req,res){
 	friendList.findById(req.params.id, function(err, friend2){
 		if(err){
 			console.log(err)
+			console.log("Error!")
 		} else {
 			console.log(friend2)
 			res.render("showFriends", {friend: friend2})
 		}
 	});
 	//render friend proper.
-	// req.params.id
+	req.params.id
 });
 
 //DELETE FRIEND
